@@ -156,6 +156,8 @@ const GallerySection = () => {
     { src: "./dalam.jpeg", alt: "Interior Musholla" },
     { src: "./kegiatan.jpeg", alt: "Kegiatan di Musholla" },
     { src: "./lingkungan.jpeg", alt: "Lingkungan Sekitar Musholla" },
+    { src: "./depan2.jpeg", alt: "Lingkungan Sekitar Musholla" },
+    { src: "./kegiatan2.jpeg", alt: "Kegiatan di Musholla" },
   ];
 
   return (
@@ -198,10 +200,10 @@ const ContactSection = () => {
         </p>
         <div className="bg-white border border-emerald-300 rounded-xl p-8 shadow-md max-w-md mx-auto">
           <p className="text-xl font-semibold text-gray-800 mb-4 font-inter">
-            Email: <a href="mailto:musholla.almuttaqin12@gmail.com" className="text-emerald-600 hover:underline">musholla.almuttaqin12@gmail.com</a> 
+            Email: <br></br><a href="mailto:musholla.almuttaqin12@gmail.com" className="text-emerald-600 hover:underline">musholla.almuttaqin12@gmail.com</a> 
           </p>
           <p className="text-xl font-semibold text-gray-800 font-inter">
-            Telepon/WhatsApp: <a href="tel:+6281234567890" className="text-emerald-600 hover:underline">+62 878-7416-6744</a> 
+            Telp/WhatsApp:  <br></br><a href="tel:+6287874166744" className="text-emerald-600 hover:underline">+62 878-7416-6744</a> 
           </p>
           <p className="text-md text-gray-600 mt-4 font-inter">
             (Komarudin)
