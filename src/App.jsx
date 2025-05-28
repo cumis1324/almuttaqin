@@ -53,6 +53,7 @@ const HeroSection = () => {
 };
 
 // Komponen Donasi Section
+// Komponen Donasi Section
 const DonationSection = () => {
   const accountNumber = "0004301880006828";
   const [showMessage, setShowMessage] = useState(false);
@@ -78,24 +79,51 @@ const DonationSection = () => {
           Salurkan Donasi Anda
         </h2>
         <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto font-inter">
-          Kami sangat menghargai setiap bentuk dukungan Anda. Donasi dapat disalurkan melalui rekening berikut:
+          Kami sangat menghargai setiap bentuk dukungan Anda. Donasi dapat disalurkan melalui rekening bank atau QRIS.
         </p>
-        <div className="bg-green-50 border border-emerald-300 rounded-xl p-8 shadow-md max-w-md mx-auto">
-          <p className="text-2xl font-bold text-emerald-700 mb-4 font-inter">
-            Bank BTN
-          </p>
-          <p className="text-xl text-gray-800 mb-2 font-inter">
-            Nomor Rekening: <span className="font-mono bg-gray-200 px-3 py-1 rounded-md">{accountNumber}</span>
-          </p>
-          <p className="text-xl text-gray-800 mb-6 font-inter">
-            Atas Nama: <span className="font-semibold">Musholla Al-Mutaqin</span>
-          </p>
-          <button
-            onClick={copyToClipboard}
-            className="bg-emerald-600 text-white text-md font-semibold py-2 px-6 rounded-full shadow-md hover:bg-emerald-700 transition duration-300 font-inter"
-          >
-            Salin Nomor Rekening
-          </button>
+        <div className="flex flex-col lg:flex-row justify-center items-start gap-8 max-w-4xl mx-auto">
+          {/* Kolom Donasi Rekening Bank */}
+          <div className="bg-green-50 border border-emerald-300 rounded-xl p-8 shadow-md w-full lg:w-1/2">
+            <p className="text-2xl font-bold text-emerald-700 mb-4 font-inter">
+              Transfer Bank
+            </p>
+            <p className="text-xl text-gray-800 mb-2 font-inter">
+              Bank BTN
+            </p>
+            <p className="text-xl text-gray-800 mb-2 font-inter">
+              Nomor Rekening: <span className="font-mono bg-gray-200 px-3 py-1 rounded-md">{accountNumber}</span>
+            </p>
+            <p className="text-xl text-gray-800 mb-6 font-inter">
+              Atas Nama: <span className="font-semibold">Musholla Al-Mutaqin</span>
+            </p>
+            <button
+              onClick={copyToClipboard}
+              className="bg-emerald-600 text-white text-md font-semibold py-2 px-6 rounded-full shadow-md hover:bg-emerald-700 transition duration-300 font-inter"
+            >
+              Salin Nomor Rekening
+            </button>
+          </div>
+
+          {/* Kolom Donasi QRIS */}
+          <div className="bg-green-50 border border-emerald-300 rounded-xl p-8 shadow-md w-full lg:w-1/2">
+            <p className="text-2xl font-bold text-emerald-700 mb-4 font-inter">
+              Scan QRIS
+            </p>
+            <p className="text-lg text-gray-700 mb-4 font-inter">
+              Scan kode QR di bawah untuk berdonasi melalui QRIS.
+            </p>
+            <div className="flex justify-center items-center h-48">
+              <img
+                src="https://placehold.co/200x200/4CAF50/FFFFFF?text=QRIS+Code" // Placeholder untuk QRIS
+                alt="QRIS Code for Donation"
+                className="w-48 h-48 object-contain rounded-lg border border-gray-300"
+                onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/200x200/CCCCCC/333333?text=QRIS+Tidak+Tersedia"; }}
+              />
+            </div>
+            <p className="text-sm text-gray-600 mt-4 font-inter">
+              (Ganti dengan QRIS asli Musholla Al-Muttaqin)
+            </p>
+          </div>
         </div>
         <p className="text-md text-gray-600 mt-8 font-inter">
           Jazakumullah Khairan Katsiran atas kebaikan Anda.
