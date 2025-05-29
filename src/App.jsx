@@ -53,7 +53,6 @@ const HeroSection = () => {
 };
 
 // Komponen Donasi Section
-// Komponen Donasi Section
 const DonationSection = () => {
   const accountNumber = "0004301880006828";
   const [showMessage, setShowMessage] = useState(false);
@@ -112,16 +111,15 @@ const DonationSection = () => {
             <p className="text-lg text-gray-700 mb-4 font-inter">
               Scan kode QR di bawah untuk berdonasi melalui QRIS.
             </p>
-            <div className="flex justify-center items-center h-48">
+            <div className="relative w-full overflow-hidden rounded-lg border border-gray-300" > {/* (1280 / 914) * 100% */}
               <img
-                src="https://placehold.co/200x200/4CAF50/FFFFFF?text=QRIS+Code" // Placeholder untuk QRIS
+                src="./qris.jpg" // Ukuran QRIS disesuaikan
                 alt="QRIS Code for Donation"
-                className="w-48 h-48 object-contain rounded-lg border border-gray-300"
-                onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/200x200/CCCCCC/333333?text=QRIS+Tidak+Tersedia"; }}
+                className="w-full h-full object-contain rounded-lg border border-gray-300"
+                onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/914x1280/CCCCCC/333333?text=QRIS+Tidak+Tersedia"; }}
               />
             </div>
             <p className="text-sm text-gray-600 mt-4 font-inter">
-              (Ganti dengan QRIS asli Musholla Al-Muttaqin)
             </p>
           </div>
         </div>
@@ -188,6 +186,19 @@ const GallerySection = () => {
     { src: "./kegiatan2.jpeg", alt: "Kegiatan di Musholla" },
   ];
 
+ const [selectedImage, setSelectedImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+    setIsModalOpen(false);
+  };
+
   return (
     <section id="galeri" className="bg-white py-16 px-4">
       <div className="container mx-auto text-center">
@@ -195,11 +206,15 @@ const GallerySection = () => {
           Galeri Musholla Al-Muttaqin
         </h2>
         <p className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto font-inter">
-          Lihatlah beberapa foto Musholla Al-Muttaqin dan kegiatan di dalamnya.
+          Lihatlah beberapa foto Musholla Al-Muttaqin dan kegiatan di dalamnya. Klik gambar untuk melihat ukuran penuh.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {images.map((image, index) => (
-            <div key={index} className="bg-green-50 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+            <div
+              key={index}
+              className="bg-green-50 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 cursor-pointer"
+              onClick={() => openModal(image)}
+            >
               <img
                 src={image.src}
                 alt={image.alt}
@@ -209,6 +224,46 @@ const GallerySection = () => {
               <p className="p-4 text-lg font-semibold text-emerald-700 font-inter">{image.alt}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Modal Fullscreen Gambar */}
+      {isModalOpen && selectedImage && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <img src={selectedImage.src} alt={selectedImage.alt} />
+            <button className="modal-close-button" onClick={closeModal}>
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
+
+// Komponen Video Section (Baru)
+const VideoSection = () => {
+  const youtubeEmbedUrl = "https://www.youtube.com/embed/NLF0zN7Zsdc?si=aqq_wCPS1-_G9yOO"; // Ganti dengan URL embed YouTube video Anda
+
+  return (
+    <section id="video" className="bg-green-50 py-16 px-4">
+      <div className="container mx-auto text-center">
+        <h2 className="text-4xl font-bold text-emerald-800 mb-8 font-inter">
+          Video Kegiatan Musholla
+        </h2>
+        <p className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto font-inter">
+          Saksikan video dokumentasi kegiatan dan progres pembangunan Musholla Al-Muttaqin.
+        </p>
+        <div className="relative w-full max-w-3xl mx-auto" style={{ paddingTop: '56.25%' }}> {/* 16:9 Aspect Ratio */}
+          <iframe
+            className="absolute top-0 left-0 w-full h-full rounded-xl shadow-lg"
+            src={youtubeEmbedUrl}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
     </section>
@@ -265,6 +320,7 @@ function App() {
       <DonationSection />
       <LocationSection />
       <GallerySection />
+      <VideoSection />
       <ContactSection />
       <Footer />
     </div>
