@@ -182,6 +182,7 @@ const GallerySection = () => {
     { src: "./dalam.jpeg", alt: "Interior Musholla" },
     { src: "./kegiatan.jpeg", alt: "Kegiatan di Musholla" },
     { src: "./lingkungan.jpeg", alt: "Lingkungan Sekitar Musholla" },
+    { src: "./lingkungan2.jpeg", alt: "Lingkungan Sekitar Musholla" },
     { src: "./depan2.jpeg", alt: "Lingkungan Sekitar Musholla" },
     { src: "./kegiatan2.jpeg", alt: "Kegiatan di Musholla" },
   ];
