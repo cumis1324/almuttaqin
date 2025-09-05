@@ -374,11 +374,12 @@ function App() {
     <div className="font-inter antialiased">
       <Navbar />
       <HeroSection />
+      <ProposalSection />
       <DonationSection />
       <LocationSection />
       <GallerySection />
       <VideoSection />
-      <ProposalSection />
+      
       <ContactSection />
       <Footer />
     </div>
