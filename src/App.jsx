@@ -6,7 +6,8 @@ import 'react-pdf/dist/Page/TextLayer.css';
 
 
 // Setup worker untuk react-pdf
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+// Menjadi seperti ini
+pdfjs.GlobalWorkerOptions.workerSrc = `/pdf.worker.min.js`;
 
 
 // ... (Komponen Navbar, HeroSection, DonationSection, LocationSection, GallerySection, VideoSection, ContactSection, Footer tetap sama)
