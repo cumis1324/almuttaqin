@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
+// Perbaikan path impor CSS
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 
+
+// Setup worker untuk react-pdf
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+
+
+// ... (Komponen Navbar, HeroSection, DonationSection, LocationSection, GallerySection, VideoSection, ContactSection, Footer tetap sama)
+
 // Komponen Navbar
 const Navbar = () => {
   return (
