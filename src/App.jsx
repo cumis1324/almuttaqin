@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 // Komponen Navbar
 const Navbar = () => {
   return (
@@ -20,6 +24,9 @@ const Navbar = () => {
           </li>
           <li>
             <a href="#galeri" className="text-white hover:text-emerald-200 transition duration-300 font-inter">Galeri</a>
+          </li>
+           <li>
+            <a href="#proposal" className="text-white hover:text-emerald-200 transition duration-300 font-inter">Proposal</a>
           </li>
           <li>
             <a href="#kontak" className="text-white hover:text-emerald-200 transition duration-300 font-inter">Kontak</a>
@@ -271,6 +278,47 @@ const VideoSection = () => {
   );
 };
 
+// Komponen Proposal Section (Baru)
+const ProposalSection = () => {
+  const [numPages, setNumPages] = useState(null);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
+
+  return (
+    <section id="proposal" className="bg-white py-16 px-4">
+      <div className="container mx-auto text-center">
+        <h2 className="text-4xl font-bold text-emerald-800 mb-8 font-inter">
+          Proposal Pembangunan
+        </h2>
+        <p className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto font-inter">
+          Berikut adalah proposal resmi untuk proyek pembangunan dan pengembangan Musholla Al-Muttaqin.
+        </p>
+        <div className="max-w-4xl mx-auto border border-gray-300 rounded-lg shadow-lg overflow-hidden">
+          <Document
+            file="/proposal.pdf" // Path ke file PDF di folder public
+            onLoadSuccess={onDocumentLoadSuccess}
+            onLoadError={console.error}
+          >
+            {Array.from(new Array(numPages), (el, index) => (
+              <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+            ))}
+          </Document>
+        </div>
+         <a
+          href="/proposal.pdf"
+          download
+          className="inline-block mt-8 bg-emerald-600 text-white text-lg font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-emerald-700 transition duration-300 transform hover:scale-105 font-inter"
+        >
+          Unduh Proposal
+        </a>
+      </div>
+    </section>
+  );
+};
+
+
 // Komponen Kontak Section
 const ContactSection = () => {
   return (
@@ -303,7 +351,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-8 rounded-t-xl">
       <div className="container mx-auto text-center font-inter">
-        <p>&copy; 2025 Musholla Al-Muttaqin. Hak Cipta Dilindungi.</p>
+        <p>© 2025 Musholla Al-Muttaqin. Hak Cipta Dilindungi.</p>
         <p className="text-sm mt-2">
           Dibangun dengan ❤️ untuk kebaikan umat.
         </p>
@@ -322,6 +370,7 @@ function App() {
       <LocationSection />
       <GallerySection />
       <VideoSection />
+      <ProposalSection />
       <ContactSection />
       <Footer />
     </div>
